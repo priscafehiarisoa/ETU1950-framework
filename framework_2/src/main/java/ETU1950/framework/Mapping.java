@@ -35,7 +35,9 @@ public class Mapping {
 
     public static HashMap<String, Mapping> getMethodsHashMapFromPackage(String packageDirectory,String ObjectPackage) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         HashMap<String,Mapping> mapping=new HashMap<>();
+
         String[] classes=getClassList(packageDirectory);
+
         for (int i = 0; i < classes.length; i++) {
             System.out.println("name: "+classes[i]);
             Class<?> tempClass=Class.forName(ObjectPackage+classes[i]);
@@ -57,7 +59,9 @@ public class Mapping {
     public static String[] getClassList(String directoryPath)
     {
         File file=new File(directoryPath);
-        // liste des classes dans file
+//        ty zany afaka simplifier-na otran'zao
+//        de filtrena fotsiny le .java avy eo
+        File[] f=file.listFiles();
         FilenameFilter textFilefilter = new FilenameFilter(){
             public boolean accept(File dir, String name) {
 //        String lowercaseName = name.toLowerCase();
@@ -77,8 +81,8 @@ public class Mapping {
 
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        String directory="/Users/priscafehiarisoadama/IdeaProjects/WEBDynamique_S4/ETU1950-framework/src/main/java/ETU1950/framework/DataObject/";
-        String [] e=Mapping.getClassList("/Users/priscafehiarisoadama/IdeaProjects/WEBDynamique_S4/ETU1950-framework/src/main/java/ETU1950/framework/DataObject");
+        String directory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/src/main/java/ETU1950/framework_2/DataObject/";
+        String [] e=Mapping.getClassList("/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/java/ETU1950/framework/DataObject");
         for (int i = 0; i < e.length; i++) {
             System.out.println(e[i]);
 

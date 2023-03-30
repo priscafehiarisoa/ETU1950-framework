@@ -16,8 +16,8 @@ public class FrontServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         //tsy maintsy instancer-na fona fa manjary tsy mandeha
-        String objectPackage="ETU1950.framework.DataObject.";
-        String packageDirectory="/Users/priscafehiarisoadama/IdeaProjects/WEBDynamique_S4/ETU1950-framework/src/main/java/ETU1950/framework/DataObject/";
+        String objectPackage="test.";
+        String packageDirectory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/test-framework2/src/main/java/test";
         try {
             this.MappingUrls = Mapping.getMethodsHashMapFromPackage(packageDirectory, objectPackage);
         }
@@ -49,26 +49,24 @@ public class FrontServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         PrintWriter out=response.getWriter();
         String contexts=request.getRequestURI().toString();
-        String prefix="/ETU1950_framework_war_exploded/";
-
-        System.out.println(contexts.split(prefix)[0]);
-        String key=contexts.split(prefix)[1];
+        String prefix="/";
+        String key=contexts.split(prefix)[2];
 
         if (MappingUrls.containsKey(key)) {
-
             // Mapping
             Mapping a = MappingUrls.get(key);
 
             out.println("Lucky you ... I have the result : \n here you are ");
             out.println("methods : " + a.getMethods());
             out.println("class: " + a.getClassName());
-
         }
         else{
+            out.println(contexts);
+            out.println(key);
             out.println("oh dear : .... poor you .... ");
             out.println("the url you entered was not found ");
             out.println("would you mind to keep trying XD ");
-            out.println("It's funny to write errors like that :p");
+            out.println("It's funny to write errors like that 🥹");
 
         }
     }

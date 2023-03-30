@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>ETU1950-framework</artifactId>
+    <artifactId>framework_2</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>ETU1950-framework</name>
+    <name>framework_2</name>
     <packaging>war</packaging>
 
     <properties>
