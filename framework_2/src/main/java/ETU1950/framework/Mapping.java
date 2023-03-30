@@ -5,6 +5,8 @@ import ETU1950.framework.annnotation.MethodAnnotation;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
@@ -47,7 +49,7 @@ public class Mapping {
                 if(methods[j].isAnnotationPresent(MethodAnnotation.class))
                 {
                     String url=methods[j].getAnnotation(MethodAnnotation.class).url();
-                    String className=classes[i];
+                    String className=ObjectPackage+classes[i];
                     String methodName=methods[j].getName();
                     mapping.put(url,new Mapping(className,methodName));
                 }
@@ -79,14 +81,30 @@ public class Mapping {
         return listefile;
     }
 
+    public String callMethod() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Class<?> tempClass=Class.forName(this.getClassName());
+        Object obj=tempClass.newInstance();
+        ModelView other= (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj.getClass());
+
+        return other.getVue();
+    }
+
+    public static String upper(String toupper)
+    {
+        return (toupper.substring(0,1)).toUpperCase()+toupper.substring(1,toupper.length());
+    }
+
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        String directory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/src/main/java/ETU1950/framework_2/DataObject/";
-        String [] e=Mapping.getClassList("/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/java/ETU1950/framework/DataObject");
-        for (int i = 0; i < e.length; i++) {
-            System.out.println(e[i]);
+//        String directory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/src/main/java/ETU1950/framework_2/DataObject/";
+//        String [] e=Mapping.getClassList("/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/java/ETU1950/framework/DataObject");
+//        for (int i = 0; i < e.length; i++) {
+//            System.out.println(e[i]);
+//
+//        }
+        String e="eb";
+        System.out.println(Mapping.upper(e));
 
-        }
 
     }
 

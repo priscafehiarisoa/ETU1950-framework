@@ -1,11 +1,19 @@
 package test;
 import ETU1950.framework.annnotation.MethodAnnotation;
+import ETU1950.framework.ModelView;
 
 public class test {
-    @MethodAnnotation(url="hura")
-    public void tester()
+    public static void main(String[] args) {
+
+    }
+//    @Override
+    @MethodAnnotation(url="hurray")
+    public static ModelView tester ()
     {
-        System.out.println("bah void");
+        return new ModelView("index.jsp");
     }
 
+    public void teste() {
+
+    }
 }
