@@ -1,11 +1,13 @@
 package ETU1950.framework.servlet;
 
 import ETU1950.framework.Mapping;
+import ETU1950.framework.ModelView;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
@@ -50,20 +52,31 @@ public class FrontServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         String contexts=request.getRequestURI().toString();
         String prefix="/";
-        String key=contexts.split(prefix)[2];
+        String key=contexts.split(prefix)[contexts.split(prefix).length-1];
 
         if (MappingUrls.containsKey(key)) {
             // Mapping
             Mapping a = MappingUrls.get(key);
 
-            out.println("Lucky you ... I have the result : \n here you are ");
             out.println("methods : " + a.getMethods());
             out.println("class: " + a.getClassName());
+            out.println("euh");
+            try {
+                String obj=a.callMethod();
+                out.println("mety");
+                out.println(obj);
+                response.sendRedirect(obj);
+//                request.getRequestDispatcher(obj).forward(request,response);
+            }
+            catch (Exception e)
+            {
+                out.println("nope");
+                e.printStackTrace();
+            }
         }
         else{
             out.println(contexts);
             out.println(key);
-            out.println("oh dear : .... poor you .... ");
             out.println("the url you entered was not found ");
             out.println("would you mind to keep trying XD ");
             out.println("It's funny to write errors like that 🥹");
