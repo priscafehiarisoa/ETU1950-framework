@@ -84,8 +84,7 @@ public class Mapping {
     public String callMethod() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class<?> tempClass=Class.forName(this.getClassName());
         Object obj=tempClass.newInstance();
-        ModelView other= (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj.getClass());
-
+        ModelView other= (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
         return other.getVue();
     }
 

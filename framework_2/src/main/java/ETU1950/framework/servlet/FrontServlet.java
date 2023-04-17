@@ -19,7 +19,7 @@ public class FrontServlet extends HttpServlet {
     public void init() throws ServletException {
         //tsy maintsy instancer-na fona fa manjary tsy mandeha
         String objectPackage="test.";
-        String packageDirectory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/test-framework2/src/main/java/test";
+        String packageDirectory="/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test";
         try {
             this.MappingUrls = Mapping.getMethodsHashMapFromPackage(packageDirectory, objectPackage);
         }
@@ -55,7 +55,7 @@ public class FrontServlet extends HttpServlet {
         String key=contexts.split(prefix)[contexts.split(prefix).length-1];
 
         if (MappingUrls.containsKey(key)) {
-            // Mapping
+//             Mapping
             Mapping a = MappingUrls.get(key);
 
             out.println("methods : " + a.getMethods());
@@ -65,8 +65,8 @@ public class FrontServlet extends HttpServlet {
                 String obj=a.callMethod();
                 out.println("mety");
                 out.println(obj);
-                response.sendRedirect(obj);
-//                request.getRequestDispatcher(obj).forward(request,response);
+//                response.sendRedirect(obj);
+                request.getRequestDispatcher(obj).forward(request,response);
             }
             catch (Exception e)
             {

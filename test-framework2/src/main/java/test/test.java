@@ -10,7 +10,7 @@ public class test {
     @MethodAnnotation(url="hurray")
     public static ModelView tester ()
     {
-        return new ModelView("index.jsp");
+        return new ModelView("test.jsp");
     }
 
     public void teste() {
