@@ -13,6 +13,14 @@ public class test {
         return new ModelView("test.jsp");
     }
 
+    @MethodAnnotation(url="getData")
+    public static ModelView getDataAndRedirect()
+    {
+        ModelView model=new ModelView("datas.jsp");
+        model.addItem("nombre",12);
+        return model;
+    }
+
     public void teste() {
 
     }

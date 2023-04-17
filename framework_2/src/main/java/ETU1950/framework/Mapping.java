@@ -74,6 +74,7 @@ public class Mapping {
                 }
             }
         };
+
         String [] listefile=file.list(textFilefilter);
         for (int i = 0; i < listefile.length; i++) {
             listefile[i]=listefile[i].split(".java")[0];
@@ -86,6 +87,12 @@ public class Mapping {
         Object obj=tempClass.newInstance();
         ModelView other= (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
         return other.getVue();
+    }
+
+    public ModelView callMethodModelView() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Class<?> tempClass=Class.forName(this.getClassName());
+        Object obj=tempClass.newInstance();
+        return (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
     }
 
     public static String upper(String toupper)

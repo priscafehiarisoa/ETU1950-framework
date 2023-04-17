@@ -10,10 +10,12 @@ import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Set;
 
 //@WebServlet(name = "FrontServlet", value = "/FrontServlet")
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> MappingUrls;
+
 
     @Override
     public void init() throws ServletException {
@@ -63,9 +65,12 @@ public class FrontServlet extends HttpServlet {
             out.println("euh");
             try {
                 String obj=a.callMethod();
-                out.println("mety");
-                out.println(obj);
-//                response.sendRedirect(obj);
+                ModelView mymodel=a.callMethodModelView();
+//                set attributes :
+                Set<String> mykey=mymodel.getData().keySet();
+                for (String keys: mykey) {
+                    request.setAttribute(keys,mymodel.getData().get(keys));
+                }
                 request.getRequestDispatcher(obj).forward(request,response);
             }
             catch (Exception e)
@@ -83,4 +88,6 @@ public class FrontServlet extends HttpServlet {
 
         }
     }
+
+//    set attributes
 }
