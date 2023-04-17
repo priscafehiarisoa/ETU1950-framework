@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db7f9f61-6795-4c05-abb7-aced6de93336" name="Changes" comment="sprint 5">
-      <change afterPath="$PROJECT_DIR$/test-framework2/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/artifacts/test_framework2_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/artifacts/test_framework2_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/test-framework2.war" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/war/test-framework.war" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.sh" beforeDir="false" />
+    <list default="true" id="db7f9f61-6795-4c05-abb7-aced6de93336" name="Changes" comment="sprint 5 - rectification">
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/datas.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/ModelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/java/test/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/java/test/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint5" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,16 +45,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/webapp/WEB-INF",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/webapp/WEB-INF&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/framework_2/src/main/webapp/WEB-INF" />
@@ -67,18 +63,20 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="ETU1950-framework" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="ETU1950-framework" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="script2-phpstorm" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/script2.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/zsh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -93,6 +91,14 @@
       <workItem from="1679641194842" duration="2406000" />
       <workItem from="1679984247795" duration="16245000" />
       <workItem from="1680177634274" duration="12580000" />
+      <workItem from="1680194921363" duration="648000" />
+      <workItem from="1680195629299" duration="9000" />
+      <workItem from="1680514788279" duration="4998000" />
+      <workItem from="1680586624950" duration="4354000" />
+      <workItem from="1680596661855" duration="2785000" />
+      <workItem from="1680702142234" duration="724000" />
+      <workItem from="1680783007330" duration="145000" />
+      <workItem from="1681717156511" duration="2203000" />
     </task>
     <task id="LOCAL-00001" summary="sprint 4">
       <created>1680182690184</created>
@@ -108,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680192147917</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="sprint 5 - add some files that causes conflict">
+      <created>1680195006445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680195006445</updated>
+    </task>
+    <task id="LOCAL-00004" summary="sprint 5 - rectification">
+      <created>1681718958005</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681718958005</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +149,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="sprint 4" />
     <MESSAGE value="sprint 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint 5" />
+    <MESSAGE value="sprint 5 - add some files that causes conflict" />
+    <MESSAGE value="sprint 5 - rectification" />
+    <option name="LAST_COMMIT_MESSAGE" value="sprint 5 - rectification" />
   </component>
 </project>

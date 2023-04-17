@@ -10,16 +10,18 @@ import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Set;
 
 //@WebServlet(name = "FrontServlet", value = "/FrontServlet")
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> MappingUrls;
 
+
     @Override
     public void init() throws ServletException {
         //tsy maintsy instancer-na fona fa manjary tsy mandeha
         String objectPackage="test.";
-        String packageDirectory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/test-framework2/src/main/java/test";
+        String packageDirectory="/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test";
         try {
             this.MappingUrls = Mapping.getMethodsHashMapFromPackage(packageDirectory, objectPackage);
         }
@@ -55,7 +57,7 @@ public class FrontServlet extends HttpServlet {
         String key=contexts.split(prefix)[contexts.split(prefix).length-1];
 
         if (MappingUrls.containsKey(key)) {
-            // Mapping
+//             Mapping
             Mapping a = MappingUrls.get(key);
 
             out.println("methods : " + a.getMethods());
@@ -63,10 +65,13 @@ public class FrontServlet extends HttpServlet {
             out.println("euh");
             try {
                 String obj=a.callMethod();
-                out.println("mety");
-                out.println(obj);
-                response.sendRedirect(obj);
-//                request.getRequestDispatcher(obj).forward(request,response);
+                ModelView mymodel=a.callMethodModelView();
+//                set attributes :
+                Set<String> mykey=mymodel.getData().keySet();
+                for (String keys: mykey) {
+                    request.setAttribute(keys,mymodel.getData().get(keys));
+                }
+                request.getRequestDispatcher(obj).forward(request,response);
             }
             catch (Exception e)
             {
@@ -83,4 +88,6 @@ public class FrontServlet extends HttpServlet {
 
         }
     }
+
+//    set attributes
 }
