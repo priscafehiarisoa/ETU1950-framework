@@ -20,7 +20,7 @@ cp -f /Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/framework_2
 export CLASSPATH=$CLASSPATH:.:/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar
 
 #compilation framework test
-javac -classpath $CLASSPATH:/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/webapp/WEB-INF/classes -d /Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/webapp/WEB-INF/classes /Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test/test.java
+javac -classpath $CLASSPATH:/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/webapp/WEB-INF/classes -d /Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/webapp/WEB-INF/classes /Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test/*.java
 cd /Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/webapp/
 pwd
 ls

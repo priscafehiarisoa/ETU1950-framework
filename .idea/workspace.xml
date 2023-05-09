@@ -5,18 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db7f9f61-6795-4c05-abb7-aced6de93336" name="Changes" comment="sprint 5 - rectification">
-      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/datas.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/framework.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/java/test/Personne.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/Personne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ETU1950-framework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ETU1950-framework.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/ModelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/framework_2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/java/test/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/java/test/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/ModelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/servlet/FrontServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script2.sh" beforeDir="false" afterPath="$PROJECT_DIR$/script2.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/datas.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/datas.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/test-framework2.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +67,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/webapp/WEB-INF&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -99,6 +117,17 @@
       <workItem from="1680702142234" duration="724000" />
       <workItem from="1680783007330" duration="145000" />
       <workItem from="1681717156511" duration="2203000" />
+      <workItem from="1682408035201" duration="763000" />
+      <workItem from="1682417072427" duration="786000" />
+      <workItem from="1682420442199" duration="301000" />
+      <workItem from="1682421007892" duration="586000" />
+      <workItem from="1682422041167" duration="6261000" />
+      <workItem from="1682432552527" duration="599000" />
+      <workItem from="1682613175498" duration="856000" />
+      <workItem from="1683005569858" duration="1761000" />
+      <workItem from="1683138216853" duration="598000" />
+      <workItem from="1683197735050" duration="597000" />
+      <workItem from="1683202145232" duration="89000" />
     </task>
     <task id="LOCAL-00001" summary="sprint 4">
       <created>1680182690184</created>
