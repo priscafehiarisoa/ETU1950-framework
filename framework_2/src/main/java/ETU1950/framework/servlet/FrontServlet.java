@@ -78,12 +78,17 @@ public class FrontServlet extends HttpServlet {
                 if(Mapping.checkIfForm(fields,request,out))
                 {
                     out.println(2);
-
+                    out.println("box1");
                     Object objets=Mapping.getfromForm(objet,fields,request,out);
+                    out.println("box");
                     // print objet
                     out.println(objets.getClass());
+                    out.println("lol");
 //                    out.println(objets.getClass().getMethod("getNom").invoke(objet));
                     Mapping.showObject(objets,fields,out);
+                    out.println("lol2");
+
+
 
 
                 }

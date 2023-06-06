@@ -124,14 +124,17 @@ public class Mapping {
             out.println(7);
 
             Object argument = request.getParameter(fields[i].getName());
+
 //            out.println("lol " + argument);
 //            out.println("ty eeee");
             out.println(fields[i].getType());
 
 
-            Method method = objet.getClass().getMethod("set" + upper(fields[i].getName()), fields[i].getType());
+            Method method = objet.getClass().getMethod("set" + upper(fields[i].getName()), String.class);
             out.println(9);
             method.invoke(objet, argument);
+
+            out.println(11);
 //            out.println(objet.getClass().getMethod("set"+upper(fields[i].getName())).invoke(objet));
         }
         out.println(10);
