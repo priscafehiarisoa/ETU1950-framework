@@ -1,6 +1,8 @@
 package ETU1950.framework;
 
+//import ETU1950.framework.DataObject.Person;
 import ETU1950.framework.annnotation.MethodAnnotation;
+import ETU1950.framework.exeptions.Method_doesnt_match;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.File;
@@ -10,6 +12,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -20,6 +28,9 @@ public class Mapping {
     public Mapping(String className, String methods) {
         this.className = className;
         this.methods = methods;
+    }
+
+    public Mapping() {
     }
 
     public String getClassName() {
@@ -98,6 +109,8 @@ public class Mapping {
         return (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
     }
 
+
+
     public static String upper(String toupper) {
         return (toupper.substring(0, 1)).toUpperCase() + toupper.substring(1, toupper.length());
     }
@@ -163,21 +176,101 @@ public class Mapping {
         return new Object();
     }
 
+//    call methods on sprint 8
+    public ModelView callMethodModelView(String [] attibuts) throws ClassNotFoundException, InstantiationException, IllegalAccessException, Method_doesnt_match {
+        Class<?> tempClass = Class.forName(this.getClassName());
+        Object obj = tempClass.newInstance();
+        Parameter[] parametresFonctions =this.get_all_arguments_from_function(obj);
+        if(parametresFonctions.length== attibuts.length){
 
-
-
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-//        String directory="/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/src/main/java/ETU1950/framework_2/DataObject/";
-//        String [] e=Mapping.getClassList("/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/java/ETU1950/framework/DataObject");
-//        for (int i = 0; i < e.length; i++) {
-//            System.out.println(e[i]);
-//
-//        }
-        String e="eb";
-        System.out.println(Mapping.upper(e));
-
+        }
+        else{
+            throw new Method_doesnt_match(parametresFonctions.length, attibuts.length);
+        }
+        return new ModelView();
 
     }
+    public Parameter[] get_all_arguments_from_function(Object object){
+        Method []m= object.getClass().getDeclaredMethods();
+        Parameter[] param=null;
+        for (int i = 0; i < m.length; i++) {
+            if(m[i].getName().equals(this.getMethods())) {
+                param=m[i].getParameters();
+                return param;
+            }
+        }
+        return param;
+    }
+
+    // traitement des liens
+    public static String[] get_Parameters_from_url(String context)
+    {
+        //split numero 1
+        String prefix1="/";
+        String[] split2=context.split(prefix1);
+
+//        //split numero 2
+        String prefix2="!";
+        String s=split2[split2.length-1];
+        String[] result=s.split(prefix2);
+        return result;
+//        return split2;
+    }
+
+    public static String getKey(String context){
+        String []keys=get_Parameters_from_url(context);
+        return keys[0];
+    }
+
+    // maka an'le attributs avy any anaty url
+//    le ao afaran'ny key
+    public static String[] get_parameters_from_url(String context){
+        String []keys=get_Parameters_from_url(context);
+        return Arrays.copyOfRange(keys, 1, keys.length);
+    }
+
+
+/**----------------------------GLOBAL---------------------------*/
+public static Object convertString(String value, String targetType) throws ParseException, ParseException {
+    switch (targetType) {
+        case "java.lang.String":
+            return value;
+        case "int":
+            return Integer.parseInt(value);
+//    } else if (targetType.equals("java.util.Date")) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        return dateFormat.parse(value);
+        case "double":
+            return Double.parseDouble(value);
+        case "float":
+            return Float.parseFloat(value);
+        case "java.lang.Integer":
+            return Integer.parseInt(value);
+        case "long":
+            return Long.parseLong(value);
+        case "java.math.BigDecimal":
+            return new BigDecimal(value);
+        case "java.math.BigInteger":
+            return new BigInteger(value);
+        case "boolean":
+            return Boolean.parseBoolean(value);
+        case "byte":
+            return Byte.parseByte(value);
+        case "char":
+            if (value.length() == 1) {
+                return value.charAt(0);
+            } else {
+                throw new IllegalArgumentException("La chaîne doit contenir un seul caractère pour la conversion en char.");
+            }
+        default:
+            throw new IllegalArgumentException("Type de conversion non pris en charge.");
+    }
+}
+
+
+
+
+
 
 
 }

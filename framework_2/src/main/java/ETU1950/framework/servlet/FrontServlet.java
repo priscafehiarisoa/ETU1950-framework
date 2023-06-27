@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
@@ -59,8 +61,13 @@ public class FrontServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         String contexts=request.getRequestURI().toString();
         String prefix="/";
+        out.println("context "+contexts);
         String key=contexts.split(prefix)[contexts.split(prefix).length-1];
-//
+        out.println("mapping key "+Mapping.getKey(contexts));
+        // attributs de la fonction
+        String[] Attributes =Mapping.get_parameters_from_url(contexts);
+
+
         if (MappingUrls.containsKey(key)) {
 ////             Mapping
             Mapping a = MappingUrls.get(key);
@@ -87,15 +94,24 @@ public class FrontServlet extends HttpServlet {
 //                    out.println(objets.getClass().getMethod("getNom").invoke(objet));
                     Mapping.showObject(objets,fields,out);
                     out.println("lol2");
+//                  test sprint 8
 
-
-
+                    //Method method= myclass.getMethod("testVariables",int.class, String.class, boolean.class);
+                    Method []m= myclass.getDeclaredMethods();
+                    for (int i = 0; i < m.length; i++) {
+                        out.println("hehe hehe hehe ");
+                        if(m[i].getName()=="testVariables") {
+                            Parameter[] param=m[i].getParameters();
+                            for (int j = 0; j < param.length; j++) {
+                                out.println(param[j].getName()+"\t"+param[j].getType());
+                            }
+                        }
+                    }
 
                 }
                 else{
                     out.println(3);
 
-                    String obj=a.callMethod();
                     ModelView mymodel=a.callMethodModelView();
 //                set attributes :
                     Set<String> mykey=mymodel.getData().keySet();
@@ -105,12 +121,6 @@ public class FrontServlet extends HttpServlet {
 //                    request.getRequestDispatcher(obj).forward(request,response);
                     out.println("tsy nety ");
                 }
-
-
-
-
-
-
 
             }
             catch (Exception e)

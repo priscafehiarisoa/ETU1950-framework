@@ -6,6 +6,10 @@ public class ModelView {
     String vue;
     HashMap<String,Object> data;
 
+    public ModelView() {
+
+    }
+
     public HashMap<String, Object> getData() {
         return data;
     }

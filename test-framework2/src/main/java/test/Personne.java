@@ -2,6 +2,8 @@ package test;
 import ETU1950.framework.annnotation.MethodAnnotation;
 import ETU1950.framework.ModelView;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.sql.Date;
 
 public class Personne {
@@ -69,5 +71,13 @@ public class Personne {
         ModelView model=new ModelView("datas.jsp");
         model.addItem("personne",this);
         return model;
+    }
+
+    public void testVariables(int a, float b, java.util.Date d){
+        System.out.println("hello");
+    }
+
+    public static void main(String[] args) {
+
     }
 }

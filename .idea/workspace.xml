@@ -4,19 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db7f9f61-6795-4c05-abb7-aced6de93336" name="Changes" comment="sprint 7">
-      <change afterPath="$PROJECT_DIR$/script3.sh" afterDir="false" />
+    <list default="true" id="db7f9f61-6795-4c05-abb7-aced6de93336" name="Changes" comment="end-sprint7">
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/exeptions/Method_doesnt_match.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Testing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/exeptions/Method_doesnt_match.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/Cute.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/.idea/artifacts/framework_2_war.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/.idea/artifacts/framework_2_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/DataObject/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/DataObject/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/DataObject/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/DataObject/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/ModelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/DataObject/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/DataObject/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/Mapping.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/classes/ETU1950/framework/servlet/FrontServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/framework_2-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script2.sh" beforeDir="false" afterPath="$PROJECT_DIR$/script2.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-framework2/.idea/artifacts/test_framework2_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-framework2/.idea/artifacts/test_framework2_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-framework2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/java/test/Personne.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/java/test/Personne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/Personne.class" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/Personne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,25 +64,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "sprint7",
-    "last_opened_file_path": "/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/webapp/WEB-INF",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sprint8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/webapp/WEB-INF&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/framework_2/src/main/webapp/WEB-INF" />
@@ -124,6 +142,7 @@
       <workItem from="1683633446705" duration="599000" />
       <workItem from="1683732610886" duration="14000" />
       <workItem from="1686028626667" duration="734000" />
+      <workItem from="1686635997237" duration="1666000" />
     </task>
     <task id="LOCAL-00001" summary="sprint 4">
       <created>1680182690184</created>
