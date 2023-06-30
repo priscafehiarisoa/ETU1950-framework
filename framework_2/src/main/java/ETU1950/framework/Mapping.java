@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Mapping {
     String className;
@@ -103,14 +104,16 @@ public class Mapping {
         return other.getVue();
     }
 
-    public ModelView callMethodModelView() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public ModelView callMethodModelView(HttpServletRequest request) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class<?> tempClass = Class.forName(this.getClassName());
         Object obj = tempClass.newInstance();
-        return (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
+        ModelView model= (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
+        model.setAttributes(request);
+        return model;
     }
 
     //    call methods on sprint 8
-    public ModelView callMethodModelView(String [] attibuts,PrintWriter out) throws ClassNotFoundException, InstantiationException, IllegalAccessException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, ParseException {
+    public ModelView callMethodModelView(String [] attibuts,PrintWriter out,HttpServletRequest request) throws ClassNotFoundException, InstantiationException, IllegalAccessException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, ParseException {
         Class<?> tempClass = Class.forName(this.getClassName());
         Object obj = tempClass.newInstance();
         Parameter[] parametresFonctions =this.get_all_arguments_from_function(obj);
@@ -130,11 +133,11 @@ public class Mapping {
             }
             Method methode= obj.getClass().getMethod(this.getMethods(),params_types);
             ModelView m=(ModelView) methode.invoke(obj, argument);
+            m.setAttributes(request);
             return m;
         }
         else{
             out.println("call else");
-
             throw new Method_doesnt_match(parametresFonctions.length, attibuts.length);
         }
 
@@ -144,17 +147,16 @@ public class Mapping {
         return (toupper.substring(0, 1)).toUpperCase() + toupper.substring(1, toupper.length());
     }
 
-    public static boolean checkIfForm(Field[] fields, HttpServletRequest request, PrintWriter out) {
-        for (int i = 0; i < fields.length; i++) {
-            out.println(request.getParameter(fields[i].getName()));
-            if (request.getParameter(fields[i].getName()) != null) {
-                return true;
-            }
+    public static boolean checkIfForm( HttpServletRequest request, PrintWriter out) {
+        Enumeration<String> parameterNames = request.getParameterNames();
+        if(parameterNames.hasMoreElements()){
+            return true;
         }
         return false;
     }
 
-    public static Object getfromForm(Object objet, Field[] fields, HttpServletRequest request, PrintWriter out) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+//    maka ny avy any anaty form raha mifanaraka @ le class
+    public  Object getfromForm(Object objet, Field[] fields, HttpServletRequest request, PrintWriter out) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         Object myobject=null;
         out.println(6);
@@ -163,16 +165,10 @@ public class Mapping {
             out.println(7);
 
             Object argument = request.getParameter(fields[i].getName());
-
-//            out.println("lol " + argument);
-//            out.println("ty eeee");
             out.println(fields[i].getType());
-
-
             Method method = objet.getClass().getMethod("set" + upper(fields[i].getName()), String.class);
             out.println(9);
             method.invoke(objet, argument);
-
             out.println(11);
 //            out.println(objet.getClass().getMethod("set"+upper(fields[i].getName())).invoke(objet));
         }
@@ -181,6 +177,53 @@ public class Mapping {
 
         return objet;
     }
+    public ModelView callMethod_from_view(HttpServletRequest request,PrintWriter out,Object object) throws ClassNotFoundException, ParseException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Enumeration<String> parameterNames = request.getParameterNames();
+
+        Parameter[] parametres = this.get_all_arguments_from_function(object);
+        String [] attributs=new String[parametres.length];
+        int index=0;
+        if(parametres.length>0){
+            while (parameterNames.hasMoreElements()){
+                for (int i = 0; i < parametres.length; i++) {
+                    if(parameterNames.nextElement().equals(parametres[i].getName())){
+                        attributs[index]=request.getParameter(parametres[i].getName());
+                        index++;
+                    }
+                }
+            }
+        }
+        Parameter[] parametresFonctions =this.get_all_arguments_from_function(object);
+        Class<?>[] params_types=new Class<?>[parametresFonctions.length];
+        Object [] argument=new Object[parametresFonctions.length];
+
+        //obtenir les types des paramettres
+        for (int i = 0; i < parametresFonctions.length; i++) {
+            params_types[i]=parametresFonctions[i].getType();
+        }
+        if(parametresFonctions.length== attributs.length){
+            //creer l'objet pour l'argument de la fonction
+            for (int i = 0; i < params_types.length; i++) {
+                out.println("parametres types : "+params_types[i]);
+                argument[i]=convertString(attributs[i],params_types[i]);
+                out.println("attributs : "+attributs[i]);
+            }
+            Method methode= object.getClass().getMethod(this.getMethods(),params_types);
+            ModelView model=(ModelView) methode.invoke(object, argument);
+           model.setAttributes(request);
+            return model;
+        }
+        else{
+            out.println("call else");
+            throw new Method_doesnt_match(parametresFonctions.length, attributs.length);
+        }
+
+
+    }
+
+
+
+
     public static void showObject(Object objet, Field[] fields,PrintWriter out) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         for (int i = 0; i < fields.length; i++) {
             out.println(objet.getClass().getMethod("get"+upper(fields[i].getName())).invoke(objet));
@@ -288,9 +331,13 @@ public static Object convertString(String value, String targetType) throws Parse
                 return value;
             case "int":
                 return Integer.parseInt(value);
-//    } else if (targetType.equals("java.util.Date")) {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        return dateFormat.parse(value);
+            case "java.util.Date":
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                return dateFormat.parse(value);
+            case "java.sql.Date":
+                SimpleDateFormat dateFormat_sql = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date utilDate = dateFormat_sql.parse(value);
+                return new java.sql.Date(utilDate.getTime());
             case "double":
                 return Double.parseDouble(value);
             case "float":

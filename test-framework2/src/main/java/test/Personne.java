@@ -72,6 +72,13 @@ public class Personne {
         model.addItem("personne",this);
         return model;
     }
+    @MethodAnnotation(url="getform2")
+    public ModelView saved(Date birth2){
+        ModelView model=new ModelView("datas3.jsp");
+        model.addItem("personne",this);
+        model.addItem("birth2",birth2);
+        return model;
+    }
 
     @MethodAnnotation(url="method_variables")
     public ModelView treatSprint8(int a,int b){

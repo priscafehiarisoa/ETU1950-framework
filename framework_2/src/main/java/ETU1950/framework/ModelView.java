@@ -1,6 +1,9 @@
 package ETU1950.framework;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class ModelView {
     String vue;
@@ -40,4 +43,14 @@ public class ModelView {
     {
         this.getData().put(key,value);
     }
+
+    public void setAttributes (HttpServletRequest request){
+        for (Map.Entry<String, Object> entry : this.getData().entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            request.setAttribute(key,value);
+        }
+    }
+
 }
+

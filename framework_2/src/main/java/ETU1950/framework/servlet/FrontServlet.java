@@ -86,11 +86,12 @@ public class FrontServlet extends HttpServlet {
                 Object objet=myclass.newInstance();
                 Field[] fields=objet.getClass().getDeclaredFields();
                 out.println("field : "+fields[0]);
-                if(Mapping.checkIfForm(fields,request,out))
+                out.println("misy form ve : "+Mapping.checkIfForm(request,out));
+                if(Mapping.checkIfForm(request,out))
                 {
                     out.println(2);
                     out.println("box1");
-                    Object objets=Mapping.getfromForm(objet,fields,request,out);
+                    Object objets=a.getfromForm(objet,fields,request,out);
                     out.println("box");
                     // print objet
                     out.println(objets.getClass());
@@ -98,9 +99,13 @@ public class FrontServlet extends HttpServlet {
 //                    out.println(objets.getClass().getMethod("getNom").invoke(objet));
                     Mapping.showObject(objets,fields,out);
                     out.println("lol2");
-//                  test sprint 8
+//                   executer la fonction
+                    ModelView modelViews=a.callMethod_from_view(request,out,objets);
+                    out.println("-----------------------");
+                    Mapping.showObject(modelViews.getData().get("personne"),fields,out);
 
-                    //Method method= myclass.getMethod("testVariables",int.class, String.class, boolean.class);
+                    request.getRequestDispatcher(modelViews.getVue()).forward(request,response);
+
                     Method []m= myclass.getDeclaredMethods();
                     for (int i = 0; i < m.length; i++) {
                         out.println("hehe hehe hehe ");
@@ -116,10 +121,10 @@ public class FrontServlet extends HttpServlet {
                     out.println(3);
                     ModelView modelView=new ModelView();
                     if (attributes.length>0){
-                        modelView= a.callMethodModelView(attributes,out);
+                        modelView= a.callMethodModelView(attributes,out,request);
                     }
                     else{
-                    modelView=a.callMethodModelView();
+                    modelView=a.callMethodModelView(request);
                     }
 //                set attributes :
                     Set<String> mykey=modelView.getData().keySet();
@@ -134,10 +139,11 @@ public class FrontServlet extends HttpServlet {
             }
             catch (Exception e)
             {
-                out.println("nope");
-                out.println(e.getMessage());
-                out.println(Arrays.toString(e.getStackTrace()));
-                e.printStackTrace();
+//                out.println("nope");
+//                out.println(e.getMessage());
+//                out.println(Arrays.toString(e.getStackTrace()));
+//                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
         else{
