@@ -65,8 +65,12 @@ public class FrontServlet extends HttpServlet {
         String key=contexts.split(prefix)[contexts.split(prefix).length-1];
         out.println("mapping key "+Mapping.getKey(contexts));
         // attributs de la fonction
-        String[] Attributes =Mapping.get_parameters_from_url(contexts);
+        String[] attributes =Mapping.get_parameters_from_url(contexts);
+        if(attributes.length>0){
+            key=Mapping.getKey(contexts);
+        }
 
+        out.println("afficher-na ny attributs "+ attributes.length);
 
         if (MappingUrls.containsKey(key)) {
 ////             Mapping
@@ -108,17 +112,22 @@ public class FrontServlet extends HttpServlet {
                         }
                     }
 
-                }
-                else{
+                }else{
                     out.println(3);
-
-                    ModelView mymodel=a.callMethodModelView();
-//                set attributes :
-                    Set<String> mykey=mymodel.getData().keySet();
-                    for (String keys: mykey) {
-                        request.setAttribute(keys,mymodel.getData().get(keys));
+                    ModelView modelView=new ModelView();
+                    if (attributes.length>0){
+                        modelView= a.callMethodModelView(attributes,out);
                     }
-//                    request.getRequestDispatcher(obj).forward(request,response);
+                    else{
+                    modelView=a.callMethodModelView();
+                    }
+//                set attributes :
+                    Set<String> mykey=modelView.getData().keySet();
+                    for (String keys: mykey) {
+                        request.setAttribute(keys,modelView.getData().get(keys));
+                    }
+                    //afficher la page
+                    request.getRequestDispatcher(modelView.getVue()).forward(request,response);
                     out.println("tsy nety ");
                 }
 
@@ -133,7 +142,7 @@ public class FrontServlet extends HttpServlet {
         }
         else{
             out.println(contexts);
-            out.println(key);
+            out.println("keys "+key);
             out.println("the url you entered was not found ");
             out.println("would you mind to keep trying XD ");
             out.println("It's funny to write errors like that 🥹");

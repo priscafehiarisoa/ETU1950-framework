@@ -109,7 +109,36 @@ public class Mapping {
         return (ModelView) obj.getClass().getMethod(this.getMethods()).invoke(obj);
     }
 
+    //    call methods on sprint 8
+    public ModelView callMethodModelView(String [] attibuts,PrintWriter out) throws ClassNotFoundException, InstantiationException, IllegalAccessException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, ParseException {
+        Class<?> tempClass = Class.forName(this.getClassName());
+        Object obj = tempClass.newInstance();
+        Parameter[] parametresFonctions =this.get_all_arguments_from_function(obj);
+        Class<?>[] params_types=new Class<?>[parametresFonctions.length];
+        Object [] argument=new Object[parametresFonctions.length];
 
+        //obtenir les types des paramettres
+        for (int i = 0; i < parametresFonctions.length; i++) {
+            params_types[i]=parametresFonctions[i].getType();
+        }
+
+        if(parametresFonctions.length== attibuts.length){
+            //creer l'objet pour l'argument de la fonction
+            for (int i = 0; i < params_types.length; i++) {
+                argument[i]=convertString(attibuts[i],params_types[i]);
+                out.println("attributs : "+attibuts[i]);
+            }
+            Method methode= obj.getClass().getMethod(this.getMethods(),params_types);
+            ModelView m=(ModelView) methode.invoke(obj, argument);
+            return m;
+        }
+        else{
+            out.println("call else");
+
+            throw new Method_doesnt_match(parametresFonctions.length, attibuts.length);
+        }
+
+    }
 
     public static String upper(String toupper) {
         return (toupper.substring(0, 1)).toUpperCase() + toupper.substring(1, toupper.length());
@@ -127,9 +156,6 @@ public class Mapping {
 
     public static Object getfromForm(Object objet, Field[] fields, HttpServletRequest request, PrintWriter out) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
-//        for (int i = 0; i < fields.length; i++) {
-//            out.println(fields[i].getName());
-//        }
         Object myobject=null;
         out.println(6);
 
@@ -176,20 +202,7 @@ public class Mapping {
         return new Object();
     }
 
-//    call methods on sprint 8
-    public ModelView callMethodModelView(String [] attibuts) throws ClassNotFoundException, InstantiationException, IllegalAccessException, Method_doesnt_match {
-        Class<?> tempClass = Class.forName(this.getClassName());
-        Object obj = tempClass.newInstance();
-        Parameter[] parametresFonctions =this.get_all_arguments_from_function(obj);
-        if(parametresFonctions.length== attibuts.length){
 
-        }
-        else{
-            throw new Method_doesnt_match(parametresFonctions.length, attibuts.length);
-        }
-        return new ModelView();
-
-    }
     public Parameter[] get_all_arguments_from_function(Object object){
         Method []m= object.getClass().getDeclaredMethods();
         Parameter[] param=null;
@@ -225,7 +238,9 @@ public class Mapping {
     // maka an'le attributs avy any anaty url
 //    le ao afaran'ny key
     public static String[] get_parameters_from_url(String context){
+        //traitement ana liens
         String []keys=get_Parameters_from_url(context);
+        //copier-na le lien de asorina le indice voalohany
         return Arrays.copyOfRange(keys, 1, keys.length);
     }
 
@@ -267,9 +282,41 @@ public static Object convertString(String value, String targetType) throws Parse
     }
 }
 
-
-
-
+    public static Object convertString(String value, Class<?> targetType) throws ParseException, ParseException {
+        switch (targetType.getName()) {
+            case "java.lang.String":
+                return value;
+            case "int":
+                return Integer.parseInt(value);
+//    } else if (targetType.equals("java.util.Date")) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        return dateFormat.parse(value);
+            case "double":
+                return Double.parseDouble(value);
+            case "float":
+                return Float.parseFloat(value);
+            case "java.lang.Integer":
+                return Integer.parseInt(value);
+            case "long":
+                return Long.parseLong(value);
+            case "java.math.BigDecimal":
+                return new BigDecimal(value);
+            case "java.math.BigInteger":
+                return new BigInteger(value);
+            case "boolean":
+                return Boolean.parseBoolean(value);
+            case "byte":
+                return Byte.parseByte(value);
+            case "char":
+                if (value.length() == 1) {
+                    return value.charAt(0);
+                } else {
+                    throw new IllegalArgumentException("La chaîne doit contenir un seul caractère pour la conversion en char.");
+                }
+            default:
+                throw new IllegalArgumentException("Type de conversion non pris en charge.");
+        }
+    }
 
 
 

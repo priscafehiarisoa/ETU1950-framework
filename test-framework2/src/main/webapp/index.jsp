@@ -18,5 +18,8 @@
     <input type="date" name="birth" id="" value="">
     <input type="submit" value="valider">
 </form>
+
+
+<a href="/method_variables!">test fonction avec variable </a>
 </body>
 </html>

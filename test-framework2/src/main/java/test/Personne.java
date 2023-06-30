@@ -73,6 +73,13 @@ public class Personne {
         return model;
     }
 
+    @MethodAnnotation(url="method_variables")
+    public ModelView treatSprint8(int a,int b){
+        ModelView model=new ModelView("datas2.jsp");
+        model.addItem("a",a);
+        model.addItem("b",b);
+        return model;
+    }
     public void testVariables(int a, float b, java.util.Date d){
         System.out.println("hello");
     }
