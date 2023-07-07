@@ -14,6 +14,14 @@
 <% Personne p=(Personne) request.getAttribute("personne");%>
 
 <%= p.getNom()%>
+<% String []pe=p.getIt();
+    for (String po:pe) {
+       out.print(po) ;
+    }
+
+
+%>
+<%--<%= p.getPhotos().getFile_name()%>--%>
 <%= request.getAttribute("birth2")%>
 </body>
 </html>

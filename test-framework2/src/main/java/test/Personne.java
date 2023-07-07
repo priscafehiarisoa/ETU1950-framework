@@ -1,6 +1,7 @@
 package test;
 import ETU1950.framework.annnotation.MethodAnnotation;
 import ETU1950.framework.ModelView;
+import ETU1950.framework.file.File;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -8,10 +9,39 @@ import java.sql.Date;
 
 public class Personne {
     String nom;
-    String prenom;
+    String  prenom;
     Date birth;
     int number;
     Integer numbers;
+    
+    File photos;
+
+    int [] tec;
+    String [] it;
+
+    public String[] getIt() {
+        return it;
+    }
+
+    public void setIt(String[] it) {
+        this.it = it;
+    }
+
+    public int[] getTec() {
+        return tec;
+    }
+
+    public void setTec(int[] tec) {
+        this.tec = tec;
+    }
+
+    public File getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(File photos) {
+        this.photos = photos;
+    }
 
     public Date getBirth() {
         return birth;

@@ -5,6 +5,7 @@ classesPath_framework='/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-fram
 cd $classesPath_framework
 javac  -classpath $CLASSPATH:$classesPath -d $classesPath   ./exeptions/*.java
 javac  -classpath $CLASSPATH:$classesPath -d $classesPath    ./annnotation/*.java
+javac  -classpath $CLASSPATH:$classesPath -d $classesPath    ./file/*.java
 javac  -classpath $CLASSPATH:$classesPath -d $classesPath   ./*.java
 javac  -classpath $CLASSPATH:$classesPath -d $classesPath   ./servlet/*.java
 

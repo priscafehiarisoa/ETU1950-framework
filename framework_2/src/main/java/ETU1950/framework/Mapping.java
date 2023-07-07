@@ -4,10 +4,9 @@ package ETU1950.framework;
 import ETU1950.framework.annnotation.MethodAnnotation;
 import ETU1950.framework.exeptions.Method_doesnt_match;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -186,7 +185,10 @@ public class Mapping {
         if(parametres.length>0){
             while (parameterNames.hasMoreElements()){
                 for (int i = 0; i < parametres.length; i++) {
-                    if(parameterNames.nextElement().equals(parametres[i].getName())){
+                    if(parameterNames.nextElement().contains("[]")){
+
+                    }
+                    else if(parameterNames.nextElement().equals(parametres[i].getName())){
                         attributs[index]=request.getParameter(parametres[i].getName());
                         index++;
                     }
@@ -217,11 +219,52 @@ public class Mapping {
             out.println("call else");
             throw new Method_doesnt_match(parametresFonctions.length, attributs.length);
         }
-
-
     }
 
+    public ModelView callMethod_from_view_2(HttpServletRequest request,PrintWriter out,Object object) throws ClassNotFoundException, ParseException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Enumeration<String> parameterNames = request.getParameterNames();
+        Parameter[] parametres = this.get_all_arguments_from_function(object);
+        Class<?>[] params_types=new Class<?>[parametres.length];
+        Object [] argument=new Object[parametres.length];
+        //obtenir les types des paramettres
+        for (int i = 0; i < parametres.length; i++) {
+            params_types[i]=parametres[i].getType();
+        }
+        String [] attributs=new String[parametres.length];
+        int index=0;
+        if(parametres.length>0){
+            while (parameterNames.hasMoreElements()){
+                for (int i = 0; i < parametres.length; i++) {
+                    if(parameterNames.nextElement().contains("[]")){
 
+//                        if()
+                    }
+                    else if(parameterNames.nextElement().equals(parametres[i].getName())){
+                        attributs[index]=request.getParameter(parametres[i].getName());
+                        index++;
+                    }
+                }
+            }
+        }
+
+
+        if(parametres.length== attributs.length){
+            //creer l'objet pour l'argument de la fonction
+            for (int i = 0; i < params_types.length; i++) {
+                out.println("parametres types : "+params_types[i]);
+                argument[i]=convertString(attributs[i],params_types[i]);
+                out.println("attributs : "+attributs[i]);
+            }
+            Method methode= object.getClass().getMethod(this.getMethods(),params_types);
+            ModelView model=(ModelView) methode.invoke(object, argument);
+            model.setAttributes(request);
+            return model;
+        }
+        else{
+            out.println("call else");
+            throw new Method_doesnt_match(parametres.length, attributs.length);
+        }
+    }
 
 
     public static void showObject(Object objet, Field[] fields,PrintWriter out) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
@@ -363,6 +406,111 @@ public static Object convertString(String value, String targetType) throws Parse
             default:
                 throw new IllegalArgumentException("Type de conversion non pris en charge.");
         }
+    }
+
+    public static Object convertPart(Part part,Class<?> classe,HttpServletRequest request) throws IOException, ParseException {
+        switch (classe.getName()) {
+            case "java.lang.String":
+                return request.getParameter(part.getName());
+            case "int":
+                return Integer.parseInt(request.getParameter(part.getName()));
+            case "java.util.Date":
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                return dateFormat.parse(request.getParameter(part.getName()));
+            case "java.sql.Date":
+                SimpleDateFormat dateFormat_sql = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date utilDate = dateFormat_sql.parse(request.getParameter(part.getName()));
+                return new java.sql.Date(utilDate.getTime());
+            case "double":
+                return Double.parseDouble(request.getParameter(part.getName()));
+            case "float":
+                return Float.parseFloat(request.getParameter(part.getName()));
+            case "java.lang.Integer":
+                return Integer.parseInt(request.getParameter(part.getName()));
+            case "long":
+                return Long.parseLong(request.getParameter(part.getName()));
+            case "java.math.BigDecimal":
+                return new BigDecimal(request.getParameter(part.getName()));
+            case "java.math.BigInteger":
+                return new BigInteger(request.getParameter(part.getName()));
+            case "boolean":
+                return Boolean.parseBoolean(request.getParameter(part.getName()));
+            case "byte":
+                return Byte.parseByte(request.getParameter(part.getName()));
+            case "ETU1950.framework.file.File":
+                InputStream inputStream=part.getInputStream();
+                return new ETU1950.framework.file.File(part.getSubmittedFileName(), "./upload",inputStream.readAllBytes());
+            case "char":
+                if (request.getParameter(part.getName()).length() == 1) {
+                    return request.getParameter(part.getName()).charAt(0);
+                } else {
+                    throw new IllegalArgumentException("La chaîne doit contenir un seul caractère pour la conversion en char.");
+                }
+            default:
+                throw new IllegalArgumentException("Type de conversion non pris en charge.");
+        }
+    }
+    public static Object[] convertParts(Part part,Class<?> classe,HttpServletRequest request,PrintWriter out ) throws ParseException, IOException {
+        String [] params=request.getParameterValues(part.getName());
+        Object [] obj=new Object[params.length];
+        out.println("pooiiuuy");
+        out.println(classe.getName());
+    switch (classe.getName()) {
+            case "java.lang.String[]":
+                out.println("eto");
+
+                return  params;
+            case "int":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Integer.parseInt(params[i]);
+                }
+            case "java.util.Date":
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=dateFormat.parse(params[i]);
+                }
+            case "java.sql.Date":
+                SimpleDateFormat dateFormat_sql = new SimpleDateFormat("yyyy-MM-dd");
+                for (int i = 0; i < params.length; i++) {
+
+                     java.util.Date utilDate =  dateFormat_sql.parse(params[i]);
+                    obj[i]= new java.sql.Date(utilDate.getTime());
+                }
+
+            case "double":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Double.parseDouble(params[i]);
+                }
+            case "float":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Float.parseFloat(params[i]);
+                }
+            case "java.lang.Integer":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Integer.parseInt(params[i]);
+                }
+            case "long":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Long.parseLong(params[i]);
+                }
+            case "java.math.BigDecimal":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=new BigDecimal(params[i]);
+                }
+            case "java.math.BigInteger":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=new BigInteger(params[i]);
+                }
+            case "boolean":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Boolean.parseBoolean(params[i]);
+                }
+            case "byte":
+                for (int i = 0; i < params.length; i++) {
+                    obj[i]=Byte.parseByte(params[i]);
+                }
+        }
+        return obj;
     }
 
 
