@@ -1,23 +1,34 @@
 package test;
 import ETU1950.framework.annnotation.MethodAnnotation;
 import ETU1950.framework.ModelView;
+import ETU1950.framework.annnotation.Singleton;
 import ETU1950.framework.file.File;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.sql.Date;
+@Singleton(isSingleton = true)
 
 public class Personne {
     String nom;
     String  prenom;
     Date birth;
     int number;
+    int inst=0;
     Integer numbers;
     
     File photos;
 
     int [] tec;
     String [] it;
+
+    public int getInst() {
+        return inst;
+    }
+
+    public void setInst(int inst) {
+        this.inst = inst;
+    }
 
     public String[] getIt() {
         return it;
@@ -98,13 +109,17 @@ public class Personne {
 
     @MethodAnnotation(url="getform")
     public ModelView save(){
+        this.setNumber(this.getNumber()+1);
         ModelView model=new ModelView("datas.jsp");
         model.addItem("personne",this);
+        setInst(getInst()+1);
+
         return model;
     }
     @MethodAnnotation(url="getform2")
     public ModelView saved(Date birth2){
         ModelView model=new ModelView("datas3.jsp");
+        setInst(getInst()+1);
         model.addItem("personne",this);
         model.addItem("birth2",birth2);
         return model;

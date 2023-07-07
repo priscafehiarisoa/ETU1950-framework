@@ -2,6 +2,7 @@ package ETU1950.framework.servlet;
 
 import ETU1950.framework.Mapping;
 import ETU1950.framework.ModelView;
+import ETU1950.framework.annnotation.Singleton;
 import ETU1950.framework.file.File;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -26,19 +27,29 @@ import static ETU1950.framework.Mapping.upper;
 @MultipartConfig(location = "./")
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> MappingUrls;
+    static String objectPackages;
+    HashMap<String,Object> classInstance;
 
+    public HashMap<String, Object> getClassInstance() {
+        return classInstance;
+    }
+
+    public void setClassInstance(HashMap<String, Object> classInstance) {
+        this.classInstance = classInstance;
+    }
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
-//    public void init() throws ServletException {
-        //tsy maintsy instancer-na fona fa manjary tsy mandeha
-//        String objectPackage="test.";
-//        String packageDirectory="/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test";
+
+
         String objectPackage=servletConfig.getInitParameter("objectPackage");
+        objectPackages=objectPackage;
         String packageDirectory=servletConfig.getInitParameter("packageDirectory");
         try {
 
             this.MappingUrls = Mapping.getMethodsHashMapFromPackage(packageDirectory, objectPackage);
+            setClassInstance(packageDirectory,objectPackage);
+
         }
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException classnotfound)
         {
@@ -75,7 +86,9 @@ public class FrontServlet extends HttpServlet {
         String key=contexts.split(prefix)[contexts.split(prefix).length-1];
         out.println("mapping key "+Mapping.getKey(contexts));
         out.println("content : "+content);
+//        setClassInstance("/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test",out,"test.");
 
+        out.println("testtttt "+ request.getRequestURI().substring(request.getContextPath().length()+1));
         // attributs de la fonction
         String[] attributes =Mapping.get_parameters_from_url(contexts);
         if(attributes.length>0){
@@ -95,7 +108,8 @@ public class FrontServlet extends HttpServlet {
                 out.println(1);
                 // faut verifier s'il y a eu un formulaire
                 Class<?> myclass=Class.forName(a.getClassName());
-                Object objet=myclass.newInstance();
+//                Object objet=myclass.newInstance();
+                Object objet=getInstanceClass(myclass.getName(),myclass,out);
                 Field[] fields=objet.getClass().getDeclaredFields();
                 if(Mapping.checkIfForm(request,out))
                 {
@@ -110,7 +124,7 @@ public class FrontServlet extends HttpServlet {
                     out.println(objets.getClass());
 //                   executer la fonction
                     ModelView modelViews=a.callMethod_from_view(request,out,objets);
-//                    request.getRequestDispatcher(modelViews.getVue()).forward(request,response);
+                    request.getRequestDispatcher(modelViews.getVue()).forward(request,response);
 
 
                 }else{
@@ -188,6 +202,92 @@ public class FrontServlet extends HttpServlet {
         }
         return object;
     }
+
+
+    public void setClassInstance(String Classdirectory,String packagename) throws ClassNotFoundException {
+        this.classInstance=new HashMap<>();
+        String [] classes=Mapping.getClassList(Classdirectory);
+        for (int i = 0; i < classes.length; i++) {
+            Class<?> type=Class.forName(packagename+classes[i]);
+            boolean sing= type.isAnnotationPresent(Singleton.class);
+
+            if(sing){
+
+                this.getClassInstance().put(packagename+classes[i],null);
+            }
+        }
+    }
+//    public void setClassInstance(String Classdirectory,PrintWriter out,String packagename) throws ClassNotFoundException {
+//        this.classInstance=new HashMap<>();
+//        String [] classes=Mapping.getClassList(Classdirectory);
+//        for (int i = 0; i < classes.length; i++) {
+//            out.println(packagename+classes[i]);
+//            Class<?> type=Class.forName(packagename+classes[i]);
+//             boolean sing= type.isAnnotationPresent(Singleton.class);
+//
+//            if(sing){
+//
+//                this.getClassInstance().put(classes[i],null);
+//                }
+//        }
+//    }
+    public void reset(Object object) throws InvocationTargetException, IllegalAccessException {
+        Field[] fields=object.getClass().getDeclaredFields();
+        Method methode=null;
+        for (int i = 0; i < fields.length; i++) {
+            try{
+                methode=object.getClass().getMethod("set"+upper(fields[i].getName()),fields[i].getType());
+            } catch (NoSuchMethodException e) {
+                continue;
+            }
+            if(fields[i].getType().equals(int.class)){
+                methode.invoke(object,0);
+            }
+            if(fields[i].getType().equals(double.class)){
+                methode.invoke(object,0);
+            }
+            if(fields[i].getType().equals(float.class)){
+                methode.invoke(object,0);
+            }
+            if(fields[i].getType().equals(Object.class)){
+                methode.invoke(object,0);
+            }
+
+        }
+    }
+    public Object getInstanceClass(String classname, Class<?> classe,PrintWriter out) throws InstantiationException, IllegalAccessException, InvocationTargetException {
+        Object obj= null;
+        out.println("11");
+        out.println();
+        out.println(this.getClassInstance().containsKey(classname));
+        out.println("classes "+classname);
+        out.println("instance "+getClassInstance().size());
+        for (String key : this.getClassInstance().keySet()) {
+            System.out.println("mykeys"+key);
+        }
+        if(this.getClassInstance().containsKey(classname)){
+            out.println("12");
+            Object objet=this.getClassInstance().get(classname);
+            out.println("13");
+            if(objet==null){
+                out.println("112");
+                objet=classe.newInstance();
+                obj=objet;
+            }
+            else{
+                out.println("114");
+//                reset(objet);
+                obj=objet;
+            }
+        }
+        else{
+        out.println("22");
+            obj=classe.getName();
+        }
+        return obj;
+    }
+
+
 
 //    set attributes
 }

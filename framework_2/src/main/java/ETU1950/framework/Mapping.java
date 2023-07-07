@@ -49,6 +49,7 @@ public class Mapping {
         this.methods = methods;
     }
 
+
     public static HashMap<String, Mapping> getMethodsHashMapFromPackage(String packageDirectory, String ObjectPackage) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         HashMap<String, Mapping> mapping = new HashMap<>();
 
@@ -72,6 +73,7 @@ public class Mapping {
         }
         return mapping;
     }
+
 
     public static String[] getClassList(String directoryPath) {
         File file = new File(directoryPath);
