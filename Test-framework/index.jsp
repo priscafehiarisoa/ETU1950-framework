@@ -1,5 +1,4 @@
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,11 +17,10 @@
             <input type="file" name="photo">
             <input type="submit" value="Valider">
         </form>
-        <a href="etudiant?">Etudiant</a>
         <a href="get-emp">Afficher emp</a>
-        <a href="login.jsp">Login</a>
-        <a href="get-connected">get-connected</a>
-        <a href="etudiant">get-connected</a>
-        <a href="testApi">Test api</a>
+        <a href="login.jsp">S'authentifier</a>
+        <a href="get-connected">Obtenir depuis session</a>
+        <a href="etudiant">Test json modelview</a>
+        <a href="testApi">Test json object</a>
     </body>
 </html>

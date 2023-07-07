@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ETU1950.framework;
+package etu2004.framework;
+//tsy misy package
 
 public class Mapping {
     

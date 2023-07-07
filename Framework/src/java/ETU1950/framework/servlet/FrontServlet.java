@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ETU1950.framework.servlet;
+package etu2004.framework.servlet;
 
 import com.google.gson.Gson;
 import ETU1950.framework.Mapping;
@@ -28,12 +28,15 @@ import org.xml.sax.SAXException;
 import utilitaire.ModelView;
 import utilitaire.MyAnnotation;
 import utilitaire.Utile;
+import utilitaire.restApi;
 
 
 @WebServlet
 @MultipartConfig(location = "./")
 public class FrontServlet extends HttpServlet {
-
+    
+    String profilName;
+    String sessionName;
     Gson gson = new Gson();
     HashMap<String, etu2004.framework.Mapping> MappingUrls;
     HashMap<String, Object> instance_list;
@@ -44,6 +47,8 @@ public class FrontServlet extends HttpServlet {
             String packageName = getInitParameter("package_name");
             setMappingUrls(Utile.getAllHashMap(packageName));
             setInstance_list(Utile.getAllSengletonClasses(packageName));
+            this.profilName = getInitParameter("profil_name");
+            this.sessionName = getInitParameter("session_name");
         } catch (Exception ex) {
             Logger.getLogger(FrontServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,6 +56,8 @@ public class FrontServlet extends HttpServlet {
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setContentType("text/html;charset=UTF-8");
+        
+        boolean isRestMethode = false;
         
         PrintWriter out = response.getWriter();
         
@@ -76,7 +83,7 @@ public class FrontServlet extends HttpServlet {
         String method = (String) MappingUrls.get(nomMethode).getMethod();
         Method methode = null;
         Method[] methodes = objet.getClass().getDeclaredMethods();
- 
+        
         for(Method m : methodes){
             if(m.getName().contains(method)){
                 methode = m;
@@ -84,22 +91,24 @@ public class FrontServlet extends HttpServlet {
             }
         }
         
+        if(methode.getDeclaredAnnotation(restApi.class) != null) isRestMethode = true;
+        
         Object retour = new Object(); //instance à l'objet servant de modelview 
         
         String contentType = request.getContentType(); //obtient le type de la requête
-        
-        String sessionName = getInitParameter("session_name");
-        String profilName = getInitParameter("profil_name");
         
         Utile.checkAuthorisation(methode, session, profilName);
         
         //maka ny donnée anaty session pour une méthode contenant l'annotaion session, izany hoe méthode mila session
         Utile.setUserDataSession(objet, methode, request);
         
+        //ito le mitraiter hoe file sa tsy file
         if(contentType != null) retour = Utile.request_multipart_traitor(objet, retour, request, methode); //si c'est du type 'multipart/form-data'
+        //ito ndray le ze tina
         else if(contentType == null) retour = Utile.request_traitor(objet, retour, request, methode); //sinon
        
-        try{
+        if(!isRestMethode){
+            //not a rest method
             ModelView m = (ModelView) retour;
             String key = "";
             //get key
@@ -107,8 +116,8 @@ public class FrontServlet extends HttpServlet {
                 key = (String) entry.getKey();
             }
             if(m.getSessions().size() > 0){
-                session.setAttribute(sessionName, m.getSessions().get(sessionName));
-                session.setAttribute(profilName, m.getSessions().get(profilName));
+                session.setAttribute(this.sessionName, m.getSessions().get(this.sessionName));
+                session.setAttribute(this.profilName, m.getSessions().get(this.profilName));
             }
             if(m.isIsJSON()){
                 String objectJsoned = this.gson.toJson(m.getData().get(key));
@@ -119,15 +128,11 @@ public class FrontServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/"+((ModelView) retour).getView());
                 requestDispatcher.forward(request,response);
             }
-           
         }
-        catch(IOException | ServletException e){
-            Object objectApi = retour;
-            String objectJsoned = this.gson.toJson(objectApi);
-            out.println(objectJsoned);
-            out.println(e.fillInStackTrace());
-            out.print(e.getClass());
-            out.println(e.getLocalizedMessage());
+        else{
+           //rest method
+           String objectJsoned = this.gson.toJson(retour);
+           out.println(objectJsoned);
         }    
     }
 

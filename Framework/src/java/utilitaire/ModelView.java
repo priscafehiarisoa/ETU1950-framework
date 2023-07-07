@@ -6,10 +6,7 @@ package utilitaire;
 
 import java.util.HashMap;
 
-/**
- *
- * @author fabien
- */
+
 
 public class ModelView {
     

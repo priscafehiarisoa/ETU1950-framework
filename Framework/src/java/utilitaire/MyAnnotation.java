@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author fabien
- */
 package utilitaire;
 
 import java.lang.annotation.*;

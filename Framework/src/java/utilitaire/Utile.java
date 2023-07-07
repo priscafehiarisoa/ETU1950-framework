@@ -16,15 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author fabien
- */
 public class Utile {
     public static void setUserDataSession(Object objet, Method methode, HttpServletRequest request) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
         if(methode.isAnnotationPresent(Session.class)){
@@ -37,7 +29,6 @@ public class Utile {
                 allSession.put(nextElement, sessionObject);
             }
             Method set = objet.getClass().getDeclaredMethod(setterName, HashMap.class);
-            set.invoke(objet, new HashMap<>());
             set.invoke(objet, allSession);
         }
     }
@@ -128,7 +119,7 @@ public class Utile {
             }
         }
         else{
-            retour = (ModelView) methode.invoke(objet);
+            retour = methode.invoke(objet);
         }
         return retour;
     }
@@ -164,7 +155,7 @@ public class Utile {
             if(paramtypesclasses.length > 0) retour = Utile.setMethodsParameters(parametres, methode, objet);   
         }
         else {
-            retour = (ModelView) methode.invoke(objet);
+            retour = methode.invoke(objet);
         }
         return retour;
     }

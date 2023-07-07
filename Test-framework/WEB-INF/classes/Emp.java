@@ -5,14 +5,13 @@
  */
 package objet;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import utilitaire.FileUpload;
 import utilitaire.ModelView;
 import utilitaire.MyAnnotation;
 import utilitaire.Session;
+import utilitaire.restApi;
 
 @MyAnnotation(isSegleton = true)
 public final class Emp {
@@ -23,14 +22,16 @@ public final class Emp {
     String prenom;
     int numero;
     FileUpload photo;
+    HashMap<String, Object> session;
     
     public void setNombredappel(int i){
         this.nombredappel = i;
     }
+
     public int getNombredappel(){
         return this.nombredappel;
     }
-    HashMap<String, Object> session = new HashMap<>();
+
 
     public void setSession(HashMap<String, Object> session) {
         this.session = session;
@@ -126,6 +127,12 @@ public final class Emp {
         m.addItem("emp", this);
         m.setView("empsdetails.jsp");
         return m;
+    }
+
+    @restApi
+    @MyAnnotation(url="testApi", ParametersNames = {})
+    public Emp numeroByAnnoation(){
+        return new Emp(2, "Jean", "Koto balida", 002);
     }
 
     @MyAnnotation(url="etudiant", ParametersNames = {})
