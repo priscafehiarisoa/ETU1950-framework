@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="framework">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
