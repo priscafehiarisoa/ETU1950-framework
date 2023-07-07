@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package etu2004.framework.servlet;
+package ETU1950.framework.servlet;
 
-import etu2004.framework.Mapping;
+import com.google.gson.Gson;
+import ETU1950.framework.Mapping;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,17 +27,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import utilitaire.ModelView;
 import utilitaire.MyAnnotation;
-import utilitaire.Session;
 import utilitaire.Utile;
 
-/**
- *
- * @author fabien
- */
+
 @WebServlet
 @MultipartConfig(location = "./")
 public class FrontServlet extends HttpServlet {
 
+    Gson gson = new Gson();
     HashMap<String, etu2004.framework.Mapping> MappingUrls;
     HashMap<String, Object> instance_list;
    
@@ -64,7 +61,7 @@ public class FrontServlet extends HttpServlet {
         String nomMethode = uri.substring(context.length()+1);
         String packageName = getInitParameter("package_name");       
         String nomDeClasse = packageName+"."+(String) MappingUrls.get(nomMethode).getClassName();
-        java.lang.Class cl = java.lang.Class.forName(nomDeClasse);
+        Class cl = java.lang.Class.forName(nomDeClasse);
         
         Object objet = instance_list.get(nomDeClasse);
         
@@ -105,18 +102,29 @@ public class FrontServlet extends HttpServlet {
         try{
             ModelView m = (ModelView) retour;
             String key = "";
+            //get key
+            for (Map.Entry<String, Object> entry : m.getData().entrySet()) {
+                key = (String) entry.getKey();
+            }
             if(m.getSessions().size() > 0){
                 session.setAttribute(sessionName, m.getSessions().get(sessionName));
                 session.setAttribute(profilName, m.getSessions().get(profilName));
             }
-            for (Map.Entry<String, Object> entry : m.getData().entrySet()) {
-                key = (String) entry.getKey();
-                request.setAttribute((String) key, m.getData().get(key));
+            if(m.isIsJSON()){
+                String objectJsoned = this.gson.toJson(m.getData().get(key));
+                out.println(objectJsoned);
             }
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/"+((ModelView) retour).getView());
-            requestDispatcher.forward(request,response);
+            else{
+                request.setAttribute((String) key, m.getData().get(key));
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/"+((ModelView) retour).getView());
+                requestDispatcher.forward(request,response);
+            }
+           
         }
         catch(IOException | ServletException e){
+            Object objectApi = retour;
+            String objectJsoned = this.gson.toJson(objectApi);
+            out.println(objectJsoned);
             out.println(e.fillInStackTrace());
             out.print(e.getClass());
             out.println(e.getLocalizedMessage());
@@ -152,9 +160,7 @@ public class FrontServlet extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | IllegalArgumentException | InvocationTargetException ex) {
            out.println(ex);
-        } catch (SAXException ex) {
-            out.println(ex);
-        } catch (ParserConfigurationException ex) {
+        } catch (SAXException | ParserConfigurationException ex) {
             out.println(ex);
         } catch (Exception ex) {
             out.println(ex);

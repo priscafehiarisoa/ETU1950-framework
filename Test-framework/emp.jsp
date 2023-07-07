@@ -1,8 +1,4 @@
-<%-- 
-    Document   : emp.jsp
-    Created on : Apr 24, 2023, 12:35:08 PM
-    Author     : fabien
---%>
+
 <%@page import="objet.Emp" contentType="text/html" pageEncoding="UTF-8"%>
 
 <%

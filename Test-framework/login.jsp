@@ -1,8 +1,4 @@
-<%-- 
-    Document   : login
-    Created on : Jun 13, 2023, 3:06:29 PM
-    Author     : fabien
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

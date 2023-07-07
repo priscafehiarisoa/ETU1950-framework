@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package etu2004.framework;
-//tsy misy package
-/**
- *
- * @author fabien
- */
+package ETU1950.framework;
+
 public class Mapping {
     
     String className;

@@ -1,8 +1,4 @@
-<%-- 
-    Document   : empsdetails
-    Created on : Apr 28, 2023, 5:28:39 AM
-    Author     : fabien
---%>
+
 
 <%@page import="objet.Emp" contentType="text/html" pageEncoding="UTF-8"%>
 
