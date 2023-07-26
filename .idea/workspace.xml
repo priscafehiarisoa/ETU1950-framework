@@ -5,24 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db7f9f61-6795-4c05-abb7-aced6de93336" name="Changes" comment="end-sprint7">
-      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/file/File.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/file/File.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Testing.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/exeptions/NotAllowedMethod.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/Connection.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/Affectation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/Config.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/DBConnection.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/DBObject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/DBTool.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/Database.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/core/Sequence.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/exception/SQL/AttributeMissingException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/exception/SQL/AttributeTypeNotExistingException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/exception/SQL/DatabaseSQLException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/exception/SQL/ObjectNameAlreadyUsed.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/exception/object/NotIdentifiedInDatabaseException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/exception/object/ObjectDatabaseException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/classe/database/provider/PostgreSQL.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/Connection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/Affectation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/DBConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/DBObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/DBTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/core/Sequence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/exception/SQL/AttributeMissingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/exception/SQL/AttributeTypeNotExistingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/exception/SQL/DatabaseSQLException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/exception/SQL/ObjectNameAlreadyUsed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/exception/object/NotIdentifiedInDatabaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/exception/object/ObjectDatabaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/database/provider/PostgreSQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/exeptions/NotAllowedMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/java/test/MySessionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/MySessionListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/gson-2.8.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/newTestFramework.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/Mapping.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/ModelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/annnotation/MethodAnnotation.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/annnotation/MethodAnnotation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/ETU1950/framework/servlet/FrontServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/classe/jars/framework.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Mapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/ModelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/Testing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/annnotation/MethodAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/annnotation/MethodAnnotation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/src/main/java/ETU1950/framework/servlet/FrontServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/DataObject/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/DataObject/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/framework_2/target/classes/ETU1950/framework/ModelView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script2.sh" beforeDir="false" afterPath="$PROJECT_DIR$/script2.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/java/test/Personne.java" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/java/test/Personne.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/Personne.class" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/classes/test/Personne.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/datas3.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/datas3.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" beforeDir="false" afterPath="$PROJECT_DIR$/test-framework2/src/main/webapp/test-framework2.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +74,17 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="sprint10" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,7 +93,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2NJR5vTnGBWtr0xmGQSfoInSNy3" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -54,11 +103,12 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;sprint9&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/framework_2/src/main/webapp/WEB-INF&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -78,7 +128,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="script2-phpstorm" type="ShConfigurationType">
+    <configuration name="script2" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/script2.sh" />
@@ -132,6 +182,10 @@
       <workItem from="1686635997237" duration="1666000" />
       <workItem from="1688633510536" duration="4416000" />
       <workItem from="1688659343987" duration="599000" />
+      <workItem from="1689696494480" duration="9853000" />
+      <workItem from="1689958671712" duration="2396000" />
+      <workItem from="1690037709170" duration="598000" />
+      <workItem from="1690118381050" duration="1180000" />
     </task>
     <task id="LOCAL-00001" summary="sprint 4">
       <created>1680182690184</created>

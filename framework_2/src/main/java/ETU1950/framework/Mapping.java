@@ -3,7 +3,9 @@ package ETU1950.framework;
 //import ETU1950.framework.DataObject.Person;
 import ETU1950.framework.annnotation.MethodAnnotation;
 import ETU1950.framework.exeptions.Method_doesnt_match;
+import ETU1950.framework.exeptions.NotAllowedMethod;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 import java.io.*;
@@ -16,10 +18,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Mapping {
     String className;
@@ -177,48 +176,61 @@ public class Mapping {
         return objet;
     }
     public ModelView callMethod_from_view(HttpServletRequest request,PrintWriter out,Object object) throws ClassNotFoundException, ParseException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Enumeration<String> parameterNames = request.getParameterNames();
+        Method methode=object.getClass().getDeclaredMethod(getMethods());
 
-        Parameter[] parametres = this.get_all_arguments_from_function(object);
-        String [] attributs=new String[parametres.length];
-        int index=0;
-        if(parametres.length>0){
-            while (parameterNames.hasMoreElements()){
-                for (int i = 0; i < parametres.length; i++) {
-                    if(parameterNames.nextElement().contains("[]")){
+        //cas où il y a un argument dans la fonction
+//        if(Mapping.checkIfHasArguments(methode)){
+            out.println("ennumeration");
+            Enumeration<String> parameterNames = request.getParameterNames();
+            Parameter[] parametres = this.get_all_arguments_from_function(object);
+            String [] attributs=new String[parametres.length];
+            int index=0;
+            out.println("check parametters");
 
-                    }
-                    else if(parameterNames.nextElement().equals(parametres[i].getName())){
-                        attributs[index]=request.getParameter(parametres[i].getName());
-                        index++;
+            if(parametres.length>0){
+                out.print("il y a param ");
+                while (parameterNames.hasMoreElements()){
+                    for (int i = 0; i < parametres.length; i++) {
+                        if(parameterNames.nextElement().contains("[]")){
+
+                        }
+                        else if(parameterNames.nextElement().equals(parametres[i].getName())){
+                            attributs[index]=request.getParameter(parametres[i].getName());
+                            index++;
+                        }
                     }
                 }
             }
-        }
-        Parameter[] parametresFonctions =this.get_all_arguments_from_function(object);
-        Class<?>[] params_types=new Class<?>[parametresFonctions.length];
-        Object [] argument=new Object[parametresFonctions.length];
+            Parameter[] parametresFonctions =this.get_all_arguments_from_function(object);
+            Class<?>[] params_types=new Class<?>[parametresFonctions.length];
+            Object [] argument=new Object[parametresFonctions.length];
 
-        //obtenir les types des paramettres
-        for (int i = 0; i < parametresFonctions.length; i++) {
-            params_types[i]=parametresFonctions[i].getType();
-        }
-        if(parametresFonctions.length== attributs.length){
-            //creer l'objet pour l'argument de la fonction
-            for (int i = 0; i < params_types.length; i++) {
-                out.println("parametres types : "+params_types[i]);
-                argument[i]=convertString(attributs[i],params_types[i]);
-                out.println("attributs : "+attributs[i]);
+            out.println("get parametter types");
+
+            //obtenir les types des paramettres
+            for (int i = 0; i < parametresFonctions.length; i++) {
+                params_types[i]=parametresFonctions[i].getType();
             }
-            Method methode= object.getClass().getMethod(this.getMethods(),params_types);
-            ModelView model=(ModelView) methode.invoke(object, argument);
-           model.setAttributes(request);
-            return model;
-        }
-        else{
-            out.println("call else");
-            throw new Method_doesnt_match(parametresFonctions.length, attributs.length);
-        }
+
+            out.println("verifie si les arguments correspondent ");
+
+            if(parametresFonctions.length== attributs.length){
+                //creer l'objet pour l'argument de la fonction
+                for (int i = 0; i < params_types.length; i++) {
+                    out.println("parametres types : "+params_types[i]);
+                    argument[i]=convertString(attributs[i],params_types[i]);
+                    out.println("attributs : "+attributs[i]);
+                }
+                Method methodes= object.getClass().getMethod(this.getMethods(),params_types);
+                ModelView model=(ModelView) methodes.invoke(object, argument);
+//                model.setAttributes(request);
+                return model;
+            }
+            else{
+                out.println("call else");
+                throw new Method_doesnt_match(parametresFonctions.length, attributs.length);
+            }
+
     }
 
     public ModelView callMethod_from_view_2(HttpServletRequest request,PrintWriter out,Object object) throws ClassNotFoundException, ParseException, Method_doesnt_match, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
@@ -275,17 +287,35 @@ public class Mapping {
 //        System.out.println(objet.getClass().getMethod("get"+));
     }
 
-    public static Object getForm(Object objet, Field[] fields, HttpServletRequest request, PrintWriter out) throws NoSuchFieldException, NoSuchMethodException {
+    public static Object getForm(Object objet, Field[] fields, HttpServletRequest request, PrintWriter out) throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ParseException {
         Enumeration<String> attributesName = request.getParameterNames();
+        objet=setAllDefault(objet,fields,out);
         while (attributesName.hasMoreElements()) {
             String attributeName = attributesName.nextElement();
             String attributeValue = (String) request.getParameter(attributeName);
             Field field = objet.getClass().getDeclaredField(attributeName);
+
+            Class<?> classse=field.getType();
             if (field != null) {
                 Method setMethode = objet.getClass().getDeclaredMethod("set" + upper(field.getName()), field.getType());
+                setMethode.invoke(objet,convertString(attributeValue,field.getType()));
+                out.println(field.getType());
+
             }
         }
-        return new Object();
+        out.println("eto");
+        showObject(objet,fields,out);
+
+        return objet;
+    }
+
+    public static Object setAllDefault(Object objet, Field [] fields, PrintWriter out) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        for (int i = 0; i < fields.length; i++) {
+            out.println("f "+fields[i]);
+            Method setMethode = objet.getClass().getDeclaredMethod("set" + upper(fields[i].getName()), fields[i].getType());
+            setMethode.invoke(objet,getDefaultValue(fields[i].getType()));
+        }
+        return objet;
     }
 
 
@@ -439,7 +469,8 @@ public static Object convertString(String value, String targetType) throws Parse
                 return Byte.parseByte(request.getParameter(part.getName()));
             case "ETU1950.framework.file.File":
                 InputStream inputStream=part.getInputStream();
-                return new ETU1950.framework.file.File(part.getSubmittedFileName(), "./upload",inputStream.readAllBytes());
+
+                return new ETU1950.framework.file.File(part.getSubmittedFileName(), "/Users/priscafehiarisoadama/Desktop/upload/",inputStream.readAllBytes());
             case "char":
                 if (request.getParameter(part.getName()).length() == 1) {
                     return request.getParameter(part.getName()).charAt(0);
@@ -513,6 +544,68 @@ public static Object convertString(String value, String targetType) throws Parse
         return obj;
     }
 
+    //fonction checkAutorisation
+//    public static void checkAuthorisation(Method methode, HttpSession session, String profileName)throws Exception{
+//        if(methode.getDeclaredAnnotation(MethodAnnotation.class) != null){
+//            if(!"".equals(methode.getDeclaredAnnotation(MethodAnnotation.class).auth())){
+//                MethodAnnotation authn = methode.getDeclaredAnnotation(MethodAnnotation.class);
+//                String profile = authn.auth();// session.getAttribute(uri)
+//
+//                if(profile.equals("admin")){
+//                    if(!profile.equals(session.getAttribute(profileName)) ){
+//                        throw new Exception("Can't acces "+methode.getName());
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    public static void checkAuthorisation(Method methode, HttpSession session, String profilename) throws NotAllowedMethod {
+    //1 alaina le auth any anaty session
+        String profile= (String)session.getAttribute(profilename);
+    //2 alaina ny auth ao anaty fonction
+        String auth=methode.getDeclaredAnnotation(MethodAnnotation.class).auth();
+    //3 si auth == "" return true
+        if(auth.equals("")){}
+        else{
+            if(Objects.equals(profile, auth)){}
+            else{
+                throw new NotAllowedMethod(" methode non authorisé");
+            }
+        }
+    }
+
+    public static boolean checkIfHasArguments(Method methode){
+        MethodAnnotation annotation = methode.getDeclaredAnnotation(MethodAnnotation.class);
+        return annotation.hasArguments();
+    }
+
+    public static Object getDefaultValue(Class<?> clazz) {
+        if (clazz == int.class || clazz == Integer.class) {
+            return 0;
+        } else if (clazz == double.class || clazz == Double.class) {
+            return 0.0;
+        } else if (clazz == boolean.class || clazz == Boolean.class) {
+            return false;
+        } else if (clazz == char.class || clazz == Character.class) {
+            return '\u0000';
+        } else if (clazz == String.class) {
+            return "";
+        } else if (clazz == Date.class) {
+            return null;
+        } else if (clazz == java.sql.Date.class ) {
+            return null;
+        } else if (clazz == float.class || clazz == Float.class) {
+            return 0.0f;
+        } else if (clazz == long.class || clazz == Long.class) {
+            return 0L;
+        } else if (clazz == short.class || clazz == Short.class) {
+            return (short) 0;
+        } else {
+            // Pour les autres types, renvoyer null
+            return null;
+        }
+    }
 
 
 }

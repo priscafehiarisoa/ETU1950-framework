@@ -13,13 +13,25 @@
 
         <init-param>
             <param-name>packageDirectory</param-name>
-            <param-value>/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test</param-value>
+            <param-value>/Users/priscafehiarisoadama/IdeaProjects/ETU1950-framework/test-framework2/src/main/java/test</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>session_name</param-name>
+            <param-value>isConnected</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>profil_name</param-name>
+            <param-value>profil</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+
 
 
 </web-app>

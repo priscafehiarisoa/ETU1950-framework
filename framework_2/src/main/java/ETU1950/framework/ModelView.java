@@ -8,9 +8,31 @@ import java.util.Map;
 public class ModelView {
     String vue;
     HashMap<String,Object> data;
+    HashMap<String, Object> sessions = new HashMap<>();
+    boolean json=false;
+
+    public boolean isJson() {
+        return json;
+    }
+
+    public void setJson(boolean json) {
+        this.json = json;
+    }
 
     public ModelView() {
 
+    }
+
+    public HashMap<String, Object> getSessions() {
+        return sessions;
+    }
+    public void addSession(String key, Object value){
+        this.getSessions().put(key, value);
+    }
+
+
+    public void setSessions(HashMap<String, Object> sessions) {
+        this.sessions = sessions;
     }
 
     public HashMap<String, Object> getData() {

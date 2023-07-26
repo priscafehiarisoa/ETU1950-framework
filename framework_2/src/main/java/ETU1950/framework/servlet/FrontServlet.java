@@ -2,7 +2,10 @@ package ETU1950.framework.servlet;
 
 import ETU1950.framework.Mapping;
 import ETU1950.framework.ModelView;
+import ETU1950.framework.annnotation.MethodAnnotation;
+import ETU1950.framework.exeptions.NotAllowedMethod;
 import ETU1950.framework.file.File;
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
@@ -15,10 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.text.ParseException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 import static ETU1950.framework.Mapping.upper;
 
@@ -26,6 +26,9 @@ import static ETU1950.framework.Mapping.upper;
 @MultipartConfig(location = "./")
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> MappingUrls;
+    String sessionName;
+    String profilName;
+    Gson gson = new Gson();
 
 
     @Override
@@ -36,6 +39,8 @@ public class FrontServlet extends HttpServlet {
 //        String packageDirectory="/Users/priscafehiarisoadama/PhpstormProjects/ETU1950-framework/test-framework2/src/main/java/test";
         String objectPackage=servletConfig.getInitParameter("objectPackage");
         String packageDirectory=servletConfig.getInitParameter("packageDirectory");
+        sessionName = servletConfig.getInitParameter("session_name");
+        profilName = servletConfig.getInitParameter("profil_name");
         try {
 
             this.MappingUrls = Mapping.getMethodsHashMapFromPackage(packageDirectory, objectPackage);
@@ -75,6 +80,8 @@ public class FrontServlet extends HttpServlet {
         String key=contexts.split(prefix)[contexts.split(prefix).length-1];
         out.println("mapping key "+Mapping.getKey(contexts));
         out.println("content : "+content);
+        HttpSession session = request.getSession();
+
 
         // attributs de la fonction
         String[] attributes =Mapping.get_parameters_from_url(contexts);
@@ -87,30 +94,73 @@ public class FrontServlet extends HttpServlet {
         if (MappingUrls.containsKey(key)) {
 ////             Mapping
             Mapping a = MappingUrls.get(key);
-
             out.println("methods : " + a.getMethods());
             out.println("class: " + a.getClassName());
 
             try {
                 out.println(1);
-                // faut verifier s'il y a eu un formulaire
                 Class<?> myclass=Class.forName(a.getClassName());
+                Method theMethod=myclass.getDeclaredMethod(a.getMethods());
+                MethodAnnotation annotation=theMethod.getAnnotation(MethodAnnotation.class);
                 Object objet=myclass.newInstance();
                 Field[] fields=objet.getClass().getDeclaredFields();
+                //1- verifier si la methode est authorisé
+                try {
+                    Mapping.checkAuthorisation(theMethod, session, profilName);
+
+                // faut verifier s'il y a eu un formulaire
                 if(Mapping.checkIfForm(request,out))
                 {
                     Object objets=new Object();
                     if(content.contains("multipart")){
+                        out.print("multi");
                         objets=traitement_file_upload(request,objet,out);
                     }
                     else{
+                        out.println("non multi");
+
                         objets=Mapping.getForm(objet,fields,request,out);
+                        Mapping.showObject(objet,fields,out);
+                        out.println ("end");
+
                     }
 
                     out.println(objets.getClass());
-//                   executer la fonction
+                    // si la fonction retourne un json
+                    if(annotation.restAPI()){
+
+                    }
+
+
+//                   executer la fonction si retourne un modelview
                     ModelView modelViews=a.callMethod_from_view(request,out,objets);
-//                    request.getRequestDispatcher(modelViews.getVue()).forward(request,response);
+                    out.println(modelViews.getSessions().size());
+                    //traiter les sessions
+
+//
+                    out.println(sessionName);
+                    out.println(profilName);
+                    //set sessions
+                    if(modelViews.getSessions().size() > 0){
+                        out.println("getSession");
+                        session.setAttribute(sessionName, modelViews.getSessions().get(sessionName));
+                        session.setAttribute(profilName, modelViews.getSessions().get(profilName));
+                    }
+
+                    out.println("setAttributes");
+                    //set attribute for datas
+                    for (Map.Entry<String, Object> entry : modelViews.getData().entrySet()) {
+                        key = (String) entry.getKey();
+                        request.setAttribute((String) key, modelViews.getData().get(key));
+                        if(modelViews.isJson()){
+                            String objectJsoned = this.gson.toJson(modelViews.getData().get(key));
+                            out.println("faut transformer en json sprint 13  \n ======== ");
+                            out.println(objectJsoned);
+                            out.println("===========\n fin json ");
+                        }
+                    }
+
+                    request.getRequestDispatcher(modelViews.getVue()).forward(request,response);
 
 
                 }else{
@@ -131,15 +181,27 @@ public class FrontServlet extends HttpServlet {
                     request.getRequestDispatcher(modelView.getVue()).forward(request,response);
                     out.println("tsy nety ");
                 }
+                }
+                catch (NotAllowedMethod notAllowedMethod){
+                    out.println("==============================");
+                    out.println("ERREUR  "+notAllowedMethod.getMessage());
+                    out.println("==============================");
+
+                }
 
             }
             catch (Exception e)
             {
-//                out.println("nope");
-//                out.println(e.getMessage());
-//                out.println(Arrays.toString(e.getStackTrace()));
-//                e.printStackTrace();
-                throw new RuntimeException(e);
+                out.println("ERREUR "+e.getMessage());
+                out.println(e.getClass().getName());
+                out.println("cause "+e.getCause());
+                StackTraceElement[] stackTrace = e.getStackTrace();
+                if (stackTrace != null && stackTrace.length > 0) {
+                    out.println(String.valueOf(stackTrace[0].getLineNumber()));
+                    out.println(stackTrace[0].getFileName());
+                }
+
+                e.printStackTrace(out);
             }
         }
         else{
